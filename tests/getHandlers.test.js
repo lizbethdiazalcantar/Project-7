@@ -1,10 +1,90 @@
 // eslint-disable-next-line no-undef
+
+//Tests for GET requests
+//Test to check response code
+//Then parse response code & check that it contains expected data
 const config = require('../config');
 
-test('', async () => {
+
+//Check status code when checking for couriers
+test('Status code should be 200', async () => {
+
+	let actualStatus;
 	try {
-		const response = await fetch(`${config.API_URL}/your/endpoint`);
+		//Make request
+		const response = await fetch(`${config.API_URL}/api/v1/couriers`);
+		actualStatus=response.status;
 	} catch (error) {
 		console.error(error);
 	}
+	//Check status code
+	expect(actualStatus).toBe(200);
+});
+
+
+//Test that we get expected data when checking for couriers
+test('Response data should match expected when checking for couriers', async () => {
+	let actualResponse;
+	try {
+		//Make request
+		const response = await fetch(`${config.API_URL}/api/v1/couriers`);
+		actualResponse= await response.json();
+	} catch (error) {
+		console.error(error);
+	}
+
+	expect(actualResponse).toEqual(
+
+		[
+			{
+				"name": "Order and Go",
+				"workingHours": {
+					"start": 8,
+					"end": 22
+				}
+			},
+			{
+				"name": "Speedy",
+				"workingHours": {
+					"start": 8,
+					"end": 22
+				}
+			},
+			{
+				"name": "Fast Delivery",
+				"workingHours": {
+					"start": 7,
+					"end": 21
+				}
+			},
+			{
+				"name": "Food Service",
+				"workingHours": {
+					"start": 6,
+					"end": 20
+				}
+			}
+		]
+
+	);
+
+});
+
+
+
+
+//Number of deliveries should be greater than 0
+test('Number of deliveries should be greater than 0', async () => {
+	let response;
+	try {
+		response = await fetch(`${config.API_URL}/api/v1/couriers`);	
+	} catch(error){
+		console.error(error);
+	}
+
+	//Convert response to JavaScript
+	const data = await response.json();
+	const countDeliveries = data.length;
+	expect(countDeliveries).toBeGreaterThan(0);
+
 });
