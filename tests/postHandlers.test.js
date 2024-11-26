@@ -4,18 +4,17 @@
 const config = require('../config');
 
 const requestBody = {
-    // put your body here
+	// put your body here
 	"ids":[
 		1,
 		9,
 		11
 	]
-
 }
 
 test('Status code should be 200 when checking for quantity of goods in warehouses', async () =>{
 	let actualStatus;
-    try {
+	try {
 		 const response = await fetch(`${config.API_URL}/api/v1/warehouses/amount`, {
 			method: 'POST',
 			headers: {
@@ -34,7 +33,7 @@ test('Status code should be 200 when checking for quantity of goods in warehouse
 
 test('Quantity of goods in warehouses should match expected result', async () => {
 	let actualResponse;
-    try {
+	try {
 		 const response = await fetch(`${config.API_URL}/api/v1/warehouses/amount`, {
 			method: 'POST',
 			headers: {
@@ -74,7 +73,7 @@ test('Quantity of goods in warehouses should match expected result', async () =>
 //Test to check that 500 status code is returned for a warehouse that doesn't exist
 //Variable for non existent warehouse
 const nonExistentRequestBody = {
-    // put your body here
+	// put your body here
 	"ids":[
 		99
 	]
@@ -82,7 +81,7 @@ const nonExistentRequestBody = {
 }
 test('Status code should be 500 when checking quantity of goods in warehouses that do not exist', async () => {
 	let statusCode;
-    try {
+	try {
 		 const response = await fetch(`${config.API_URL}/api/v1/warehouses/amount`, {
 			method: 'POST',
 			headers: {
