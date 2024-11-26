@@ -7,7 +7,7 @@ const config = require('../config');
 
 
 //Check status code when checking for couriers
-test('Status code should be 200', async () => {
+test('Should return status code 200 when checking for couriers', async () => {
 
 	let actualStatus;
 	try {
@@ -23,7 +23,7 @@ test('Status code should be 200', async () => {
 
 
 //Test that we get expected data when checking for couriers
-test('Response data should match expected when checking for couriers', async () => {
+test('Should return expected response data when checking for couriers', async () => {
 	let actualResponse;
 	try {
 		//Make request
@@ -74,7 +74,7 @@ test('Response data should match expected when checking for couriers', async () 
 
 
 //Number of deliveries should be greater than 0
-test('Number of deliveries should be greater than 0', async () => {
+test('Should return number of deliveries greater than 0', async () => {
 	let response;
 	try {
 		response = await fetch(`${config.API_URL}/api/v1/couriers`);	

@@ -10,7 +10,7 @@ const requestBody =
 }
 
 //Status code should be 200 when price of grocery item is changed successfully
-test('Status code should be 200', async () => {
+test('Should return status code 200 when changing price of grocery item', async () => {
 
 	let actualStatus;
     try {
@@ -32,7 +32,7 @@ test('Status code should be 200', async () => {
 
 
 //Check we get expected response when changing price of grocery item
-test('Test that price of grocery item is successfully changed', async () => {
+test('Should update the price of a grocery item and return a success response', async () => {
 	let actualResponse;
     try {
 		const response = await fetch(`${config.API_URL}/api/v1/products/7`, {
@@ -53,7 +53,7 @@ test('Test that price of grocery item is successfully changed', async () => {
 });
 
 //Changing non-existent item, should return 404 response
-test('Changing price of an item that does not exist, should return 404 message', async () => {
+test('Should return 404 message when changing price of an item that does not exist', async () => {
 	let actualResponse;
 	try{
 		const response = await fetch(`${config.API_URL}/api/v1/products/99`, {

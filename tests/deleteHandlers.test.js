@@ -5,10 +5,10 @@ const config = require('../config');
 
 //Status code should be 200 when kit is deleted successfully
 
-test('Status code should be 200', async () =>{
+test('Should return status code 200 when deleting kit', async () =>{
 	let actualStatus;
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/4`, {
 			method: 'DELETE',
 		});
 		actualStatus = response.status;
@@ -24,10 +24,10 @@ test('Status code should be 200', async () =>{
 
 //Test that kit is deleted successfully, get expected response
 
-test('Test that kit is deleted', async () => {
+test('Should delete the kit and return a success response', async () => {
 	let actualResponse;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/19`, {
 			method: 'DELETE',
 		});
 		actualResponse = await response.json();

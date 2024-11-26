@@ -8,7 +8,7 @@ const requestBody = {
 	"ids": [1, 9, 11]
 };
 
-test('Status code should be 200 when checking for quantity of goods in warehouses', async () => {
+test('Should return status code 200 when checking for quantity of goods in warehouses', async () => {
 	let actualStatus;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/warehouses/amount`, {
@@ -25,7 +25,7 @@ test('Status code should be 200 when checking for quantity of goods in warehouse
 	expect(actualStatus).toBe(200);
 });
 
-test('Quantity of goods in warehouses should match expected result', async () => {
+test('Should return expected quantity of goods in warehouses', async () => {
 	let actualResponse;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/warehouses/amount`, {
@@ -64,7 +64,7 @@ const nonExistentRequestBody = {
 	"ids": [99]
 };
 
-test('Status code should be 500 when checking quantity of goods in warehouses that do not exist', async () => {
+test('Should return status code 500 when checking quantity of goods in warehouses that do not exist', async () => {
 	let statusCode;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/warehouses/amount`, {
@@ -81,4 +81,34 @@ test('Status code should be 500 when checking quantity of goods in warehouses th
 
 	// Check status code
 	expect(statusCode).toBe(500);	
+});
+
+
+//Test when creating a kit
+//Request body for creating a kit
+const createKit={
+	
+
+		"name": "My new kit",
+		"cardId":19
+		
+ 
+}
+
+test('Should return status code 200 when creating a kit', async () =>{
+	let statusCode;
+	try {
+		const response = await fetch(`${config.API_URL}/api/v1/kits`,{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(createKit)
+		});
+		statusCode = response.status;
+	} catch (error) {
+		console.error(error);
+	}
+
+	expect(statusCode).toBe(201);
 });
