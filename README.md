@@ -6,6 +6,7 @@ This project contains integration for the Urban Grocers API for GET, POST, PUT, 
 
 # Technologies Used:
 
+Javascript
 Node.js
 npm
 
